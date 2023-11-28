@@ -8,15 +8,15 @@ set -e
 # set -x
 
 BUILD_DIR=$1
-VENDOR_DIR="$BUILD_DIR/vendor"
-PROFILE_PATH="$BUILD_DIR/.profile.d/p7zip.sh"
+VENDOR_DIR="$BUILD_DIR/vendor/7zip"
+PROFILE_PATH="$BUILD_DIR/.profile.d/7zip.sh"
 
 mkdir -p $VENDOR_DIR
 mkdir -p $(dirname $PROFILE_PATH)
 
-echo "-----> Fetching and vendoring p7zip"
-echo "       Using p7zip version: 9.20.1"
-curl "https://s3.amazonaws.com/opendoor-deps/p7zip_9.20.1.tar.gz" -s -o - | tar xzf - -C "$VENDOR_DIR"
-mv "$VENDOR_DIR/p7zip_9.20.1" "$VENDOR_DIR/p7zip"
+echo "-----> Fetching and vendoring 7zip"
+echo "       Using 7zip version: 9.20.1"
+curl "https://www.7-zip.org/a/7z2301-linux-x64.tar.xz" -s -o - | tar xJf - -C "$VENDOR_DIR"
+mv "$VENDOR_DIR/7zz" "$VENDOR_DIR/7z"
 
-echo "export PATH=\$PATH:/app/vendor/p7zip/bin" >> $PROFILE_PATH
+echo "export PATH=\$PATH:/app/vendor/7zip" >> $PROFILE_PATH
